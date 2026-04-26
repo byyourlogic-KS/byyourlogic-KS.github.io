@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kannan Suresh — Performance Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080d12;
+    --surface: #0e1620;
+    --surface2: #141f2e;
+    --teal: #00e5a0;
+    --teal-dim: #00b37a;
+    --teal-glow: rgba(0,229,160,0.12);
+    --amber: #f5a623;
+    --text: #e8eef4;
+    --muted: #6b8299;
+    --border: rgba(255,255,255,0.07);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Grid overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,160,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,160,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 4rem;
+    background: rgba(8,13,18,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-brand {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--teal);
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--teal); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--teal);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--teal);
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 span { color: var(--teal); }
+
+  .hero-desc {
+    color: var(--muted);
+    font-size: 1.05rem;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 4px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: var(--teal);
+    color: #080d12;
+    font-weight: 500;
+  }
+
+  .btn-primary:hover {
+    background: #00ffb3;
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+
+  /* STATS CARD */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .stat-cell {
+    background: var(--surface);
+    padding: 1.75rem;
+    position: relative;
+  }
+
+  .stat-cell::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 2px;
+    height: 100%;
+    background: var(--teal);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .stat-cell:hover::after { opacity: 1; }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--teal);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .stat-sub {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--teal);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 1px;
+    background: var(--teal);
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+    line-height: 1.85;
+  }
+
+  .about-text p strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .tools-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .tool-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+
+  .tool-tag:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+    background: var(--teal-glow);
+  }
+
+  .tool-tag.highlight {
+    border-color: rgba(0,229,160,0.3);
+    color: var(--teal);
+    background: var(--teal-glow);
+  }
+
+  /* EXPERIENCE */
+  .exp-list { display: flex; flex-direction: column; gap: 1px; }
+
+  .exp-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.75rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    transition: border-color 0.2s;
+    margin-bottom: 0.75rem;
+  }
+
+  .exp-item:hover { border-color: rgba(0,229,160,0.25); }
+
+  .exp-role {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .exp-org {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--teal);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+
+  .exp-desc {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .exp-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    white-space: nowrap;
+    padding-top: 0.2rem;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--teal);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .project-card:hover { border-color: rgba(0,229,160,0.2); transform: translateY(-3px); }
+  .project-card:hover::before { transform: scaleX(1); }
+
+  .project-sport {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .project-sport::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+    display: inline-block;
+  }
+
+  .project-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .project-desc {
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .project-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.04);
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .skill-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.5rem;
+  }
+
+  .skill-block-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--teal);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .skill-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+  }
+
+  .skill-item:last-child { border-bottom: none; }
+
+  .skill-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+    display: inline-block;
+    margin: 0.25rem 0.25rem 0.25rem 0;
+  }
+
+  .skill-tag:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+    background: var(--teal-glow);
+  }
+
+  /* CONTACT */
+  .contact-inner {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .contact-text h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .contact-text p {
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s;
+    font-size: 0.9rem;
+  }
+
+  .contact-link:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+    background: var(--teal-glow);
+  }
+
+  .contact-link-icon {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--teal);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    min-width: 60px;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    margin: 0 4rem;
+    max-width: calc(1100px);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-tag { animation: fadeUp 0.5s ease both; }
+  h1 { animation: fadeUp 0.5s 0.1s ease both; }
+  .hero-desc { animation: fadeUp 0.5s 0.2s ease both; }
+  .hero-cta { animation: fadeUp 0.5s 0.3s ease both; }
+  .hero-stats { animation: fadeUp 0.6s 0.35s ease both; }
+
+  /* Pitch background element */
+  .pitch-bg {
+    position: absolute;
+    right: -100px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 500px;
+    height: 340px;
+    opacity: 0.03;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">byYourLogic</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">Performance Analyst · Sports Scientist</div>
+      <h1>Kannan<br><span>Suresh</span></h1>
+      <p class="hero-desc">
+        MSc Applied Sport Performance Analysis candidate at Leeds Beckett University. Turning match data into decisions — across football, tennis and rugby.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-cell">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Sports</div>
+        <div class="stat-sub">Football · Tennis · Rugby</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">ATP</div>
+        <div class="stat-label">Level Analysis</div>
+        <div class="stat-sub">Grand Slams · Masters 1000</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">1st</div>
+        <div class="stat-label">BSc Honours</div>
+        <div class="stat-sub">Sport & Exercise Science</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">MSc</div>
+        <div class="stat-label">Current Study</div>
+        <div class="stat-sub">Applied Sport Performance Analysis</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pitch SVG background -->
+  <svg class="pitch-bg" viewBox="0 0 500 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="10" y="10" width="480" height="320" stroke="white" stroke-width="2"/>
+    <line x1="250" y1="10" x2="250" y2="330" stroke="white" stroke-width="1.5"/>
+    <circle cx="250" cy="170" r="50" stroke="white" stroke-width="1.5"/>
+    <rect x="10" y="100" width="80" height="140" stroke="white" stroke-width="1.5"/>
+    <rect x="410" y="100" width="80" height="140" stroke="white" stroke-width="1.5"/>
+    <rect x="10" y="130" width="40" height="80" stroke="white" stroke-width="1.5"/>
+    <rect x="450" y="130" width="40" height="80" stroke="white" stroke-width="1.5"/>
+    <circle cx="250" cy="170" r="3" fill="white"/>
+    <circle cx="90" cy="170" r="3" fill="white"/>
+    <circle cx="410" cy="170" r="3" fill="white"/>
+  </svg>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">01 · About</div>
+  <h2>Analyst. Scientist. Problem solver.</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm a <strong>performance analyst and sport scientist</strong> currently completing an MSc in Applied Sport Performance Analysis at Leeds Beckett University, building on a First Class BSc in Sport and Exercise Science.
+      </p>
+      <p>
+        My work sits at the intersection of <strong>tactical analysis, data science and applied sport science</strong> — from coding live ATP tennis matches for broadcast delivery, to building player development frameworks for academy footballers, to conducting applied research on concussion exposure in rugby.
+      </p>
+      <p>
+        My MSc thesis focuses on <strong>offensive and defensive set-piece strategies in the Premier League 2025/26</strong>, using Catapult Focus, Wyscout and R to analyse 38 matches across all 20 EPL clubs.
+      </p>
+    </div>
+    <div>
+      <div class="section-label" style="margin-bottom: 1rem;">Tools & Technologies</div>
+      <div class="tools-grid">
+        <span class="tool-tag highlight">Catapult Focus</span>
+        <span class="tool-tag highlight">Wyscout</span>
+        <span class="tool-tag highlight">R / RStudio</span>
+        <span class="tool-tag highlight">Hawk-Eye</span>
+        <span class="tool-tag highlight">InPlay</span>
+        <span class="tool-tag highlight">Veo</span>
+        <span class="tool-tag">ggplot2</span>
+        <span class="tool-tag">Random Forest</span>
+        <span class="tool-tag">Logistic Regression</span>
+        <span class="tool-tag">EWMA</span>
+        <span class="tool-tag">MacOS</span>
+        <span class="tool-tag">Windows</span>
+        <span class="tool-tag">Excel</span>
+        <span class="tool-tag">Lucidchart</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">02 · Experience</div>
+  <h2>Where I've worked.</h2>
+  <div class="exp-list">
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">Data Collection & Analysis</div>
+        <div class="exp-org">TennisViz · Ellipse Data</div>
+        <div class="exp-desc">Collected and verified live match data across ATP tournaments (250, 500, Masters 1000, Grand Slams) using Hawk-Eye and company-specific software. Produced data outputs and visualisations delivered to players, coaches, and ATP platforms including Tennis Insights and broadcast media.</div>
+      </div>
+      <div class="exp-date">2023 – Present</div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">Data Analysis Tester & Collector</div>
+        <div class="exp-org">FootballViz · Ellipse Data</div>
+        <div class="exp-desc">Supported development and testing of a new football data collection tool using Premier League, MLS and Ligue 1 footage. Contributed to EURO 2024 RFI, evaluating key performance metrics against FIFA and OPTA standards to enhance competitive insights.</div>
+      </div>
+      <div class="exp-date">2024 – 2025</div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">Sport Science Analyst</div>
+        <div class="exp-org">Leeds Beckett Women's Rugby Union</div>
+        <div class="exp-desc">Match filming, coding and performance analysis supporting team and coach decision-making. Assisting with applied research on concussion and head impact exposure using instrumented mouthguards, bridging academic research with applied performance environments.</div>
+      </div>
+      <div class="exp-date">2025 – Present</div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">Academy Analyst</div>
+        <div class="exp-org">i2i International Soccer Academy</div>
+        <div class="exp-desc">Match filming, tagging and performance coding using Veo. Pre- and post-match analysis supporting individual player development for second-year athletes. Developing longitudinal end-of-season reviews, Player Development Plans (PDPs) and GPS performance dashboards.</div>
+      </div>
+      <div class="exp-date">2025 – Present</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">03 · Projects</div>
+  <h2>Analysis work.</h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-sport">Football · Thesis</div>
+      <div class="project-title">EPL Set-Piece Analysis 2025/26</div>
+      <div class="project-desc">Observational analysis of offensive and defensive set-piece strategies across all 20 Premier League clubs. Coding 38 matches via Catapult Focus with logistic regression and random forest modelling in R to identify tactical predictors of set-piece success.</div>
+      <div class="project-tags">
+        <span class="project-tag">Catapult Focus</span>
+        <span class="project-tag">R</span>
+        <span class="project-tag">Wyscout</span>
+        <span class="project-tag">Random Forest</span>
+        <span class="project-tag">Logistic Regression</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-sport">Football · Performance Framework</div>
+      <div class="project-title">Measurement & Performance Framework</div>
+      <div class="project-desc">Developed a structured measurement technique and performance framework for understanding team performance, originally produced for Eintracht Frankfurt as part of MSc module work. Framework adapted for applied use at i2i International Soccer Academy.</div>
+      <div class="project-tags">
+        <span class="project-tag">KPI Selection</span>
+        <span class="project-tag">Path Diagrams</span>
+        <span class="project-tag">Literature Review</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-sport">Football · Data Analytics</div>
+      <div class="project-title">Defending Performance Review</div>
+      <div class="project-desc">End-of-season defending analysis using Opta Premier League data. Variable selection via SLR funnel, corrplot exploration, MLR and random forest modelling. Time series EWMA analysis identifying key defensive trends across 38 matches.</div>
+      <div class="project-tags">
+        <span class="project-tag">R / ggplot2</span>
+        <span class="project-tag">EWMA</span>
+        <span class="project-tag">MLR</span>
+        <span class="project-tag">corrplot</span>
+        <span class="project-tag">Opta Data</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-sport">Football · Player Analysis</div>
+      <div class="project-title">Gabriel Martinelli 2022/23</div>
+      <div class="project-desc">Detailed player analysis of Martinelli's breakout season at Arsenal — tactical role, movement patterns, goal contributions and development under Arteta's system.</div>
+      <div class="project-tags">
+        <span class="project-tag">Tactical Analysis</span>
+        <span class="project-tag">Player Profiling</span>
+        <span class="project-tag">Video Analysis</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-sport">Football · Team Analysis</div>
+      <div class="project-title">Burnley 2022/23 Championship</div>
+      <div class="project-desc">Season-long team analysis of Burnley's title-winning Championship campaign under Vincent Kompany — possession-based tactical identity, pressing structure and how they dominated to earn Premier League promotion.</div>
+      <div class="project-tags">
+        <span class="project-tag">Tactical Analysis</span>
+        <span class="project-tag">Team Shape</span>
+        <span class="project-tag">Pressing Metrics</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-sport">Rugby · Sport Science</div>
+      <div class="project-title">Concussion & Head Impact Research</div>
+      <div class="project-desc">Applied research project on concussion and head impact exposure in women's rugby using instrumented mouthguards. Bridging academic research with performance environments as part of MSc Sport Performance Analysis.</div>
+      <div class="project-tags">
+        <span class="project-tag">Mouthguard Sensors</span>
+        <span class="project-tag">Applied Research</span>
+        <span class="project-tag">Player Welfare</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">04 · Skills</div>
+  <h2>Capabilities.</h2>
+  <div class="skills-grid">
+
+    <div class="skill-block">
+      <div class="skill-block-title">Analysis Software</div>
+      <span class="skill-tag">Catapult Focus</span>
+      <span class="skill-tag">Wyscout</span>
+      <span class="skill-tag">InPlay</span>
+      <span class="skill-tag">Hawk-Eye</span>
+      <span class="skill-tag">Veo</span>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-block-title">Data & Statistics</div>
+      <span class="skill-tag">R / RStudio</span>
+      <span class="skill-tag">ggplot2</span>
+      <span class="skill-tag">Random Forest</span>
+      <span class="skill-tag">Logistic Regression</span>
+      <span class="skill-tag">MLR</span>
+      <span class="skill-tag">EWMA</span>
+      <span class="skill-tag">corrplot</span>
+      <span class="skill-tag">Excel</span>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-block-title">Analysis Disciplines</div>
+      <span class="skill-tag">Tactical Analysis</span>
+      <span class="skill-tag">Set Piece Analysis</span>
+      <span class="skill-tag">Player Profiling</span>
+      <span class="skill-tag">Opposition Analysis</span>
+      <span class="skill-tag">Video Coding</span>
+      <span class="skill-tag">Live Data Collection</span>
+      <span class="skill-tag">Post-match Review</span>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-block-title">Sport Science</div>
+      <span class="skill-tag">Performance Monitoring</span>
+      <span class="skill-tag">GPS / Load Analysis</span>
+      <span class="skill-tag">Player Development Plans</span>
+      <span class="skill-tag">Longitudinal Review</span>
+      <span class="skill-tag">Applied Research</span>
+      <span class="skill-tag">Concussion Monitoring</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">05 · Contact</div>
+  <h2>Let's talk.</h2>
+  <div class="contact-inner">
+    <div class="contact-text">
+      <h3>Open to opportunities<br>from July 2025.</h3>
+      <p>Based in Leeds. Available for performance analyst and sport science roles — particularly academy and first team environments. Always open to a conversation about data, football and analysis.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:010kannansuresh@gmail.com" class="contact-link">
+        <span class="contact-link-icon">Email</span>
+        010kannansuresh@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/kannan-suresh" class="contact-link" target="_blank">
+        <span class="contact-link-icon">LinkedIn</span>
+        Kannan Suresh
+      </a>
+      <a href="https://sites.google.com/view/byyourlogic/home" class="contact-link" target="_blank">
+        <span class="contact-link-icon">Portfolio</span>
+        byYourLogic
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Kannan Suresh · byYourLogic</p>
+  <p>Performance Analyst · Leeds, UK</p>
+</footer>
+
+</body>
+</html>
