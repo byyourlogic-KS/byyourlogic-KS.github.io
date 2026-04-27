@@ -454,7 +454,90 @@
     letter-spacing: 0.04em;
   }
 
-  /* SKILLS */
+  /* FILTER BAR */
+  .filter-bar {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .filter-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.5rem 1.25rem;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+
+  .filter-btn.active {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: #080d12;
+    font-weight: 500;
+  }
+
+  /* PROJECT THUMBNAILS */
+  .project-thumb {
+    width: 100%;
+    height: 180px;
+    border-radius: 4px 4px 0 0;
+    overflow: hidden;
+    margin: -2rem -2rem 1.25rem -2rem;
+    width: calc(100% + 4rem);
+  }
+
+  .project-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.4s ease;
+  }
+
+  .project-card:hover .project-thumb img {
+    transform: scale(1.04);
+  }
+
+  .project-thumb--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .project-thumb-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.5;
+  }
+
+  .project-card-body { }
+
+  /* Hidden cards */
+  .project-card.hidden {
+    display: none;
+  }
+
+  /* PROJECTS GRID update */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
   .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -772,75 +855,113 @@
 <section id="projects">
   <div class="section-label">03 · Projects</div>
   <h2>Analysis work.</h2>
-  <div class="projects-grid">
 
-    <div class="project-card">
-      <div class="project-sport">Football · Thesis</div>
-      <div class="project-title">EPL Set-Piece Analysis 2025/26</div>
-      <div class="project-desc">Observational analysis of offensive and defensive set-piece strategies across all 20 Premier League clubs. Coding 38 matches via Catapult Focus with logistic regression and random forest modelling in R to identify tactical predictors of set-piece success.</div>
-      <div class="project-tags">
-        <span class="project-tag">Catapult Focus</span>
-        <span class="project-tag">R</span>
-        <span class="project-tag">Wyscout</span>
-        <span class="project-tag">Random Forest</span>
-        <span class="project-tag">Logistic Regression</span>
+  <!-- Filter buttons -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="player-analysis">Player Analysis</button>
+    <button class="filter-btn" data-filter="team-analysis">Team Analysis</button>
+    <button class="filter-btn" data-filter="data-analytics">Data Analytics</button>
+    <button class="filter-btn" data-filter="sport-science">Sport Science</button>
+  </div>
+
+  <div class="projects-grid" id="projects-grid">
+
+    <div class="project-card" data-category="data-analytics">
+      <div class="project-thumb project-thumb--placeholder" style="background: linear-gradient(135deg, #0e1620 0%, #141f2e 100%);">
+        <div class="project-thumb-label">EPL 2025/26</div>
+      </div>
+      <div class="project-card-body">
+        <div class="project-sport">Football · Thesis</div>
+        <div class="project-title">EPL Set-Piece Analysis 2025/26</div>
+        <div class="project-desc">Observational analysis of offensive and defensive set-piece strategies across all 20 Premier League clubs. Logistic regression and random forest modelling in R to identify tactical predictors of set-piece success.</div>
+        <div class="project-tags">
+          <span class="project-tag">Catapult Focus</span>
+          <span class="project-tag">R</span>
+          <span class="project-tag">Wyscout</span>
+          <span class="project-tag">Random Forest</span>
+        </div>
       </div>
     </div>
 
-    <div class="project-card">
-      <div class="project-sport">Football · Performance Framework</div>
-      <div class="project-title">Measurement & Performance Framework</div>
-      <div class="project-desc">Developed a structured measurement technique and performance framework for understanding team performance, originally produced for Eintracht Frankfurt as part of MSc module work. Framework adapted for applied use at i2i International Soccer Academy.</div>
-      <div class="project-tags">
-        <span class="project-tag">KPI Selection</span>
-        <span class="project-tag">Path Diagrams</span>
-        <span class="project-tag">Literature Review</span>
+    <div class="project-card" data-category="data-analytics">
+      <div class="project-thumb project-thumb--placeholder" style="background: linear-gradient(135deg, #0e1620 0%, #141f2e 100%);">
+        <div class="project-thumb-label">Defending Review</div>
+      </div>
+      <div class="project-card-body">
+        <div class="project-sport">Football · Data Analytics</div>
+        <div class="project-title">Defending Performance Review</div>
+        <div class="project-desc">End-of-season defending analysis using Opta Premier League data. Variable selection via SLR funnel, corrplot, MLR and random forest. EWMA time series identifying key defensive trends across 38 matches.</div>
+        <div class="project-tags">
+          <span class="project-tag">R / ggplot2</span>
+          <span class="project-tag">EWMA</span>
+          <span class="project-tag">MLR</span>
+          <span class="project-tag">Opta Data</span>
+        </div>
       </div>
     </div>
 
-    <div class="project-card">
-      <div class="project-sport">Football · Data Analytics</div>
-      <div class="project-title">Defending Performance Review</div>
-      <div class="project-desc">End-of-season defending analysis using Opta Premier League data. Variable selection via SLR funnel, corrplot exploration, MLR and random forest modelling. Time series EWMA analysis identifying key defensive trends across 38 matches.</div>
-      <div class="project-tags">
-        <span class="project-tag">R / ggplot2</span>
-        <span class="project-tag">EWMA</span>
-        <span class="project-tag">MLR</span>
-        <span class="project-tag">corrplot</span>
-        <span class="project-tag">Opta Data</span>
+    <div class="project-card" data-category="data-analytics">
+      <div class="project-thumb project-thumb--placeholder" style="background: linear-gradient(135deg, #0e1620 0%, #141f2e 100%);">
+        <div class="project-thumb-label">Performance Framework</div>
+      </div>
+      <div class="project-card-body">
+        <div class="project-sport">Football · Performance Framework</div>
+        <div class="project-title">Measurement & Performance Framework</div>
+        <div class="project-desc">Structured measurement technique and performance framework for understanding team performance. Originally produced for Eintracht Frankfurt, adapted for applied use at i2i International Soccer Academy.</div>
+        <div class="project-tags">
+          <span class="project-tag">KPI Selection</span>
+          <span class="project-tag">Path Diagrams</span>
+          <span class="project-tag">Literature Review</span>
+        </div>
       </div>
     </div>
 
-    <div class="project-card">
-      <div class="project-sport">Football · Player Analysis</div>
-      <div class="project-title">Gabriel Martinelli 2022/23</div>
-      <div class="project-desc">Detailed player analysis of Martinelli's breakout season at Arsenal — tactical role, movement patterns, goal contributions and development under Arteta's system.</div>
-      <div class="project-tags">
-        <span class="project-tag">Tactical Analysis</span>
-        <span class="project-tag">Player Profiling</span>
-        <span class="project-tag">Video Analysis</span>
+    <div class="project-card" data-category="player-analysis">
+      <div class="project-thumb">
+        <img src="Martinelli cover.png" alt="Gabriel Martinelli Analysis Cover" loading="lazy">
+      </div>
+      <div class="project-card-body">
+        <div class="project-sport">Football · Player Analysis</div>
+        <div class="project-title">Gabriel Martinelli 2022/23</div>
+        <div class="project-desc">Detailed player analysis of Martinelli's breakout season at Arsenal — tactical role, movement patterns, goal contributions and development under Arteta's system.</div>
+        <div class="project-tags">
+          <span class="project-tag">Tactical Analysis</span>
+          <span class="project-tag">Player Profiling</span>
+          <span class="project-tag">Video Analysis</span>
+        </div>
       </div>
     </div>
 
-    <div class="project-card">
-      <div class="project-sport">Football · Team Analysis</div>
-      <div class="project-title">Burnley 2022/23 Championship</div>
-      <div class="project-desc">Season-long team analysis of Burnley's title-winning Championship campaign under Vincent Kompany — possession-based tactical identity, pressing structure and how they dominated to earn Premier League promotion.</div>
-      <div class="project-tags">
-        <span class="project-tag">Tactical Analysis</span>
-        <span class="project-tag">Team Shape</span>
-        <span class="project-tag">Pressing Metrics</span>
+    <div class="project-card" data-category="team-analysis">
+      <div class="project-thumb project-thumb--placeholder" style="background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 100%);">
+        <div class="project-thumb-label">Burnley 22/23</div>
+      </div>
+      <div class="project-card-body">
+        <div class="project-sport">Football · Team Analysis</div>
+        <div class="project-title">Burnley 2022/23 Championship</div>
+        <div class="project-desc">Season-long team analysis of Burnley's title-winning Championship campaign under Vincent Kompany — possession-based tactical identity, pressing structure and how they dominated to earn Premier League promotion.</div>
+        <div class="project-tags">
+          <span class="project-tag">Tactical Analysis</span>
+          <span class="project-tag">Team Shape</span>
+          <span class="project-tag">Pressing Metrics</span>
+        </div>
       </div>
     </div>
 
-    <div class="project-card">
-      <div class="project-sport">Rugby · Sport Science</div>
-      <div class="project-title">Concussion & Head Impact Research</div>
-      <div class="project-desc">Applied research project on concussion and head impact exposure in women's rugby using instrumented mouthguards. Bridging academic research with performance environments as part of MSc Sport Performance Analysis.</div>
-      <div class="project-tags">
-        <span class="project-tag">Mouthguard Sensors</span>
-        <span class="project-tag">Applied Research</span>
-        <span class="project-tag">Player Welfare</span>
+    <div class="project-card" data-category="sport-science">
+      <div class="project-thumb project-thumb--placeholder" style="background: linear-gradient(135deg, #0a1a0e 0%, #1a3a22 100%);">
+        <div class="project-thumb-label">Rugby · Sport Science</div>
+      </div>
+      <div class="project-card-body">
+        <div class="project-sport">Rugby · Sport Science</div>
+        <div class="project-title">Concussion & Head Impact Research</div>
+        <div class="project-desc">Applied research on concussion and head impact exposure in women's rugby using instrumented mouthguards, bridging academic research with applied performance environments.</div>
+        <div class="project-tags">
+          <span class="project-tag">Mouthguard Sensors</span>
+          <span class="project-tag">Applied Research</span>
+          <span class="project-tag">Player Welfare</span>
+        </div>
       </div>
     </div>
 
@@ -930,5 +1051,26 @@
   <p>Performance Analyst · Leeds, UK</p>
 </footer>
 
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+
+      projectCards.forEach(card => {
+        if (filter === 'all' || card.dataset.category === filter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>
