@@ -190,7 +190,7 @@
   /* STATS CARD */
   .hero-stats {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 1px;
     background: var(--border);
     border: 1px solid var(--border);
@@ -718,7 +718,7 @@
 <div class="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-tag">Performance Analyst · Sports Scientist</div>
+      <div class="hero-tag">Performance Analyst</div>
       <h1>Kannan<br><span>Suresh</span></h1>
       <p class="hero-desc">
         MSc Applied Sport Performance Analysis student at Leeds Beckett University, graduating October 2026. Turning match data into decisions — across football, tennis and rugby.
@@ -726,6 +726,7 @@
       <div class="hero-cta">
         <a href="#projects" class="btn btn-primary">View Projects</a>
         <a href="#contact" class="btn btn-outline">Get In Touch</a>
+        <a href="CV.pdf" class="btn btn-outline" download>Download CV</a>
       </div>
     </div>
 
@@ -734,11 +735,6 @@
         <div class="stat-num">3</div>
         <div class="stat-label">Sports</div>
         <div class="stat-sub">Football · Tennis · Rugby</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-num">ATP</div>
-        <div class="stat-label">Level Analysis</div>
-        <div class="stat-sub">Grand Slams · Masters 1000</div>
       </div>
       <div class="stat-cell">
         <div class="stat-num">1st</div>
@@ -829,7 +825,7 @@
 
     <div class="exp-item">
       <div>
-        <div class="exp-role">Peformance/Sport Science Analyst</div>
+        <div class="exp-role">Performance Analyst</div>
         <div class="exp-org">Leeds Beckett Women's Rugby Union</div>
         <div class="exp-desc">Match filming, coding and performance analysis supporting team and coach decision-making.</div>
       </div>
@@ -988,18 +984,18 @@
       </div>
     </div>
 
-    <div class="project-card" data-category="sport-science">
-      <div class="project-thumb project-thumb--placeholder" style="background: linear-gradient(135deg, #0a1a0e 0%, #1a3a22 100%);">
-        <div class="project-thumb-label">Rugby · Sport Science</div>
+    <div class="project-card" data-category="team-analysis">
+      <div class="project-thumb project-thumb--placeholder" style="background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 100%);">
+        <div class="project-thumb-label">Leeds vs Chelsea</div>
       </div>
       <div class="project-card-body">
-        <div class="project-sport">Rugby · Sport Science</div>
-        <div class="project-title">Concussion & Head Impact Research</div>
-        <div class="project-desc">Applied research on concussion and head impact exposure in women's rugby using instrumented mouthguards, bridging academic research with applied performance environments.</div>
+        <div class="project-sport">Football · Match Analysis</div>
+        <div class="project-title">Leeds United vs Chelsea — Post Match Analysis</div>
+        <div class="project-desc">Post-match analysis report of Leeds United vs Chelsea, Gameweek 14 (3-1). Produced as part of MSc Measurement Techniques portfolio, covering tactical and performance insights for coaching staff.</div>
         <div class="project-tags">
-          <span class="project-tag">Mouthguard Sensors</span>
-          <span class="project-tag">Applied Research</span>
-          <span class="project-tag">Player Welfare</span>
+          <span class="project-tag">Tactical Analysis</span>
+          <span class="project-tag">Post-Match Report</span>
+          <span class="project-tag">Video Analysis</span>
         </div>
       </div>
     </div>
