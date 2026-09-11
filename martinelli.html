@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gabriel Martinelli 2022/23 | Kannan Suresh</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080d12;
+    --surface: #0e1620;
+    --surface2: #141f2e;
+    --teal: #00e5a0;
+    --teal-dim: #00b37a;
+    --teal-glow: rgba(0,229,160,0.12);
+    --amber: #f5a623;
+    --text: #e8eef4;
+    --muted: #6b8299;
+    --border: rgba(255,255,255,0.07);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Grid overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,160,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,160,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 4rem;
+    background: rgba(8,13,18,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-brand {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--teal);
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--teal); }
+
+  /* PROJECT DETAIL LAYOUT */
+  main {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 10rem 4rem 6rem;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    margin-bottom: 2.5rem;
+    transition: color 0.2s;
+  }
+
+  .back-link:hover { color: var(--teal); }
+
+  .back-link::before {
+    content: '←';
+    font-size: 0.9rem;
+  }
+
+  .project-header-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--teal);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .project-header-tag::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--teal);
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    max-width: 700px;
+  }
+
+  .project-desc-lead {
+    color: var(--muted);
+    font-size: 1.05rem;
+    max-width: 700px;
+    margin-bottom: 2rem;
+    line-height: 1.85;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .project-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* EMBED */
+  .embed-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .embed-wrap::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--teal);
+  }
+
+  .embed-frame {
+    position: relative;
+    width: 100%;
+    padding-top: 59.27%; /* matches 960x569 Google Slides embed aspect ratio */
+    border-radius: 4px;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .embed-frame iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .embed-caption {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    padding: 0 0.25rem;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .back-link { animation: fadeUp 0.5s ease both; }
+  .project-header-tag { animation: fadeUp 0.5s 0.05s ease both; }
+  h1 { animation: fadeUp 0.5s 0.1s ease both; }
+  .project-desc-lead { animation: fadeUp 0.5s 0.15s ease both; }
+  .project-tags { animation: fadeUp 0.5s 0.2s ease both; }
+  .embed-wrap { animation: fadeUp 0.6s 0.25s ease both; }
+
+  @media (max-width: 768px) {
+    main { padding: 8rem 1.5rem 4rem; }
+    nav { padding: 1.25rem 1.5rem; }
+    .nav-links { display: none; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html#" class="nav-brand">byYourLogic</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#experience">Experience</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="index.html#skills">Skills</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+  <a href="index.html#projects" class="back-link">Back to Projects</a>
+
+  <div class="project-header-tag">Football · Player Analysis</div>
+  <h1>Gabriel Martinelli 2022/23</h1>
+  <p class="project-desc-lead">
+    A detailed player analysis of Martinelli's breakout season at Arsenal — covering his tactical role, movement patterns, goal contributions and development under Mikel Arteta's system.
+  </p>
+  <div class="project-tags">
+    <span class="project-tag">Tactical Analysis</span>
+    <span class="project-tag">Player Profiling</span>
+    <span class="project-tag">Video Analysis</span>
+  </div>
+
+  <div class="embed-wrap">
+    <div class="embed-frame">
+      <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vS4F8NZpsJFdVsioXH7NLdUkSEfjvKWUtvyfOtuhfg9C0U9LVQRcdHvA2lgzs6a8lovEQa4QInK8jNb/pubembed?start=false&loop=false&delayms=3000" frameborder="0" title="Gabriel Martinelli 2022/23 — Presentation" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+    </div>
+    <div class="embed-caption">Full report · Google Slides presentation</div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Kannan Suresh · byYourLogic</p>
+  <p>Performance Analyst · Leeds, UK</p>
+</footer>
+
+</body>
+</html>
