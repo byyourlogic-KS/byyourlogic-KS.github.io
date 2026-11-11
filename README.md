@@ -1,0 +1,2 @@
+This is my project portfolio of what I have built and learnt during my BSc and MSc. There are things I have added from my placements and things I have done as part of my personal portfolio. 
+The website is made for coaches, recruiters and analysts who want to see my work and my CV is also attached here. Please do feel free to put your remarks or thoughts as the feedback is only going to improve and help my projects!
