@@ -102,7 +102,7 @@
 
   /* HERO */
   .hero {
-    min-height: 100vh;
+    min-height: 86vh;
     display: flex;
     align-items: center;
     padding: 8rem 4rem 4rem;
@@ -713,6 +713,51 @@
     pointer-events: none;
   }
 
+
+  /* LOGO STRIP */
+  .trust {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1rem 4rem 3.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem 3.5rem;
+  }
+  .trust-group { display: flex; flex-direction: column; gap: 0.9rem; }
+  .trust-group:first-child { flex-basis: 100%; }
+  .trust-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .trust-row { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+  .trust-logo {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    opacity: 0.8;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .trust-logo:hover { opacity: 1; transform: translateY(-2px); }
+  .trust-logo img { height: 100%; width: auto; display: block; }
+  .trust-logo--mono img { filter: brightness(0) invert(1); }
+  .trust-logo--lg { height: 76px; }
+  .trust-logo--bright img { filter: brightness(1.9) saturate(1.4); }
+  .trust-row { gap: 2.25rem; }
+  .trust-member { display: flex; align-items: center; gap: 0.9rem; }
+  .trust-member-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text);
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+  }
+  .trust-member-text span { display: block; color: var(--teal); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.66rem; }
+
   /* MOBILE NAV TOGGLE */
   .nav-toggle {
     display: none;
@@ -753,7 +798,12 @@
     }
     .nav-links.open { display: flex; }
     .nav-links a { display: block; padding: 0.9rem 0; font-size: 0.8rem; }
-    .hero { padding: 7rem 1.5rem 3rem; }
+    .hero { padding: 7rem 1.5rem 3rem; min-height: 0; }
+    .trust { padding: 0.5rem 1.5rem 2.5rem; gap: 1.75rem; }
+    .trust-row { gap: 1.5rem 2rem; }
+    .trust-logo { height: 46px; }
+    .trust-logo--lg { height: 60px; }
+
     .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     section { padding: 4rem 1.5rem; }
     .about-grid, .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
@@ -833,6 +883,33 @@
     <circle cx="90" cy="170" r="3" fill="white"/>
     <circle cx="410" cy="170" r="3" fill="white"/>
   </svg>
+</div>
+
+<!-- LOGO STRIP -->
+<div class="trust" aria-label="Organisations I have worked with, studied at and belong to">
+  <div class="trust-group">
+    <div class="trust-label">Worked with</div>
+    <div class="trust-row">
+      <div class="trust-logo trust-logo--lg" title="Huddersfield Town"><img src="logos/huddersfield-town.png" alt="Huddersfield Town" loading="lazy"></div>
+      <div class="trust-logo trust-logo--lg" title="i2i International Soccer Academy"><img src="logos/i2i.png" alt="i2i International Soccer Academy" loading="lazy"></div>
+      <div class="trust-logo trust-logo--mono" title="Ellipse Data"><img src="logos/ellipse-data.png" alt="Ellipse Data" loading="lazy"></div>
+      <div class="trust-logo trust-logo--mono" title="TennisViz"><img src="logos/tennisviz.png" alt="TennisViz" loading="lazy"></div>
+      <div class="trust-logo trust-logo--lg trust-logo--bright" title="Leeds Beckett Women's Rugby Union"><img src="logos/beckett-wrufc.png" alt="Leeds Beckett Women's Rugby Union" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="trust-group">
+    <div class="trust-label">Studied at</div>
+    <div class="trust-row">
+      <div class="trust-logo trust-logo--mono" title="Leeds Beckett University"><img src="logos/leeds-beckett.png" alt="Leeds Beckett University" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="trust-group">
+    <div class="trust-label">Member of</div>
+    <div class="trust-member">
+      <div class="trust-logo trust-logo--mono" title="Chartered Association of Sport and Exercise Sciences"><img src="logos/cases.png" alt="CASES - The Chartered Association of Sport and Exercise Sciences" loading="lazy"></div>
+      <div class="trust-member-text"><span>CASES</span>Student Member</div>
+    </div>
+  </div>
 </div>
 
 <!-- ABOUT -->
