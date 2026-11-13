@@ -783,6 +783,13 @@
   .contact-cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
   @media (max-width: 520px) { .contact-inner { padding: 1.75rem; gap: 2rem; } }
 
+  /* ABOUT: currently card */
+  .currently { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.4rem 1.5rem; margin-bottom: 2rem; }
+  .currently ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+  .currently li { color: var(--muted); font-size: 0.92rem; line-height: 1.55; padding-left: 1rem; position: relative; }
+  .currently li::before { content: ''; position: absolute; left: 0; top: 0.62em; width: 5px; height: 5px; border-radius: 50%; background: var(--teal); }
+  .currently li strong { color: var(--text); font-weight: 500; }
+
   /* LOGO STRIP */
   .trust {
     position: relative;
@@ -792,9 +799,11 @@
     padding: 1rem 4rem 3.5rem;
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem 3.5rem;
+    justify-content: center;
+    text-align: center;
+    gap: 2.25rem 4rem;
   }
-  .trust-group { display: flex; flex-direction: column; gap: 0.9rem; }
+  .trust-group { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
   .trust-group:first-child { flex-basis: 100%; }
   .trust-label {
     font-family: 'DM Mono', monospace;
@@ -803,20 +812,20 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }
-  .trust-row { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+  .trust-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; align-items: center; }
   .trust-logo {
-    height: 56px;
+    height: 68px;
     display: flex;
     align-items: center;
-    opacity: 0.8;
+    opacity: 0.85;
     transition: opacity 0.2s, transform 0.2s;
   }
   .trust-logo:hover { opacity: 1; transform: translateY(-2px); }
   .trust-logo img { height: 100%; width: auto; display: block; }
   .trust-logo--mono img { filter: brightness(0) invert(1); }
-  .trust-logo--lg { height: 76px; }
+  .trust-logo--lg { height: 92px; }
   .trust-logo--bright img { filter: brightness(1.9) saturate(1.4); }
-  .trust-row { gap: 2.25rem; }
+  .trust-row { gap: 2.5rem; }
   .trust-member { display: flex; align-items: center; gap: 0.9rem; }
   .trust-member-text {
     font-family: 'DM Mono', monospace;
@@ -870,8 +879,8 @@
     .hero { padding: 7rem 1.5rem 3rem; min-height: 0; }
     .trust { padding: 0.5rem 1.5rem 2.5rem; gap: 1.75rem; }
     .trust-row { gap: 1.5rem 2rem; }
-    .trust-logo { height: 46px; }
-    .trust-logo--lg { height: 60px; }
+    .trust-logo { height: 54px; }
+    .trust-logo--lg { height: 72px; }
 
     .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     section { padding: 4rem 1.5rem; }
@@ -962,16 +971,24 @@
   <div class="about-grid">
     <div class="about-text">
       <p>
-        I'm a <strong>performance analyst and sport scientist</strong> who has just completed an MSc in Sport Performance Analysis at Leeds Beckett University with Distinction, building on a First Class BSc in Sport and Exercise Science.
+        I'm a <strong>performance analyst working mainly in academy football</strong>. At i2i International Soccer Academy I'm Lead Analyst for the second-year squad: I film, tag and review matches, and build player development plans and a GPS monitoring dashboard. I've just started an internship in Huddersfield Town's academy performance analysis department.
       </p>
       <p>
-        My work sits at the intersection of <strong>tactical analysis, data analysis and applied sport science</strong> - from coding live ATP tennis matches for broadcast delivery, to building player development frameworks for academy footballers, to conducting applied research on concussion exposure in rugby.
+        Before that I collected and verified live ATP match data for broadcast with TennisViz, and worked as performance analyst for Leeds Beckett Women's Rugby Union. I finished my MSc in Sport Performance Analysis with Distinction, with a thesis on what decides corners and throw-ins at the 2022 World Cup, after a First Class BSc in Sport and Exercise Science.
       </p>
       <p>
-        My MSc dissertation analyses corner kick and throw-in outcomes across all 64 matches of the 2022 FIFA World Cup using StatsBomb open data and R, identifying tactical predictors of set-piece success.
+        What I care about is the step after the analysis: getting a result in front of a coach in a form they can use in minutes, not buried in a spreadsheet.
       </p>
     </div>
     <div>
+      <div class="currently">
+        <div class="section-label" style="margin-bottom: 0.9rem;">Currently</div>
+        <ul>
+          <li><strong>Intern</strong>, Huddersfield Town Academy</li>
+          <li><strong>Lead Analyst</strong>, i2i International Soccer Academy</li>
+          <li>Open to academy and first-team analyst roles</li>
+        </ul>
+      </div>
       <div class="section-label" style="margin-bottom: 1rem;">Tools & Technologies</div>
       <div class="tools-grid">
         <span class="tool-tag highlight">Catapult Focus</span>
