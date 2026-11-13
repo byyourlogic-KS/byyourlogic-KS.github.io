@@ -797,6 +797,19 @@
   .currently li::before { content: ''; position: absolute; left: 0; top: 0.62em; width: 5px; height: 5px; border-radius: 50%; background: var(--teal); }
   .currently li strong { color: var(--text); font-weight: 500; }
 
+  /* LIVE APP BADGE */
+  .project-thumb { position: relative; }
+  .live-badge {
+    position: absolute; top: 0.75rem; right: 0.75rem; z-index: 2;
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    padding: 0.32rem 0.7rem; border-radius: 999px;
+    background: rgba(8,13,18,0.82); border: 1px solid rgba(0,229,160,0.45);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--text);
+  }
+  .live-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 6px var(--teal); }
+
   /* LOGO STRIP */
   .trust {
     position: relative;
@@ -1120,6 +1133,7 @@
 
     <a href="https://byyourlogic.shinyapps.io/i2i-gps-monitor/" target="_blank" rel="noopener noreferrer" class="project-card featured" data-category="sport-science" style="text-decoration: none; color: inherit; display: block;">
       <div class="project-thumb">
+        <span class="live-badge">Live app &#8599;</span>
         <img src="i2i-gps-cover.jpg" alt="i2i International Soccer Academy logo" loading="lazy">
       </div>
       <div class="project-card-body">
@@ -1137,6 +1151,7 @@
 
     <a href="https://byyourlogic-ks-leicester-city-wfc-2023-24.share.connect.posit.cloud/" target="_blank" rel="noopener noreferrer" class="project-card featured" data-category="team-analysis" style="text-decoration: none; color: inherit; display: block;">
       <div class="project-thumb">
+        <span class="live-badge">Live app &#8599;</span>
         <img src="leicester-dashboard-cover.jpg" alt="Leicester City Women players celebrating a goal" loading="lazy">
       </div>
       <div class="project-card-body">
