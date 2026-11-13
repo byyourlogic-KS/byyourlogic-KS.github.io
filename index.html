@@ -115,8 +115,8 @@
     margin: 0 auto;
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 3rem;
     align-items: center;
   }
 
@@ -714,6 +714,25 @@
   }
 
 
+
+  /* NAV LOGO + HERO ART */
+  .nav-brand { display: inline-flex; align-items: center; }
+  .nav-brand img { height: 22px; width: auto; display: block; }
+  .hero-proof {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    line-height: 1.7;
+    max-width: 480px;
+    margin: -1.25rem 0 2rem;
+    animation: fadeUp 0.5s 0.25s ease both;
+  }
+  .hero-proof span { white-space: nowrap; }
+  .hero-cta .btn { padding: 0.75rem 1.25rem; }
+  .hero-art { animation: fadeUp 0.6s 0.35s ease both; }
+  .hero-art img { width: 100%; height: auto; display: block; opacity: 0.95; }
+
   /* LOGO STRIP */
   .trust {
     position: relative;
@@ -824,7 +843,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-brand">byYourLogic</a>
+  <a href="#" class="nav-brand" aria-label="By Your Logic - home"><img src="logos/byl-wordmark-short.png" alt="By Your Logic" height="22"></a>
   <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
   <ul class="nav-links" id="nav-links">
     <li><a href="#about">About</a></li>
@@ -842,8 +861,9 @@
       <div class="hero-tag">Performance Analyst</div>
       <h1>Kannan<br><span>Suresh</span></h1>
       <p class="hero-desc">
-        MSc Applied Sport Performance Analysis graduate (Distinction) from Leeds Beckett University. Turning match data into decisions - across football, tennis and rugby.
+        Performance analyst in academy football, with live tennis and rugby data experience.
       </p>
+      <p class="hero-proof"><span>Intern, Huddersfield Town Academy</span> · <span>Lead Analyst, i2i</span> · <span>MSc Distinction, Leeds Beckett</span></p>
       <div class="hero-cta">
         <a href="#projects" class="btn btn-primary">View Projects</a>
         <a href="#contact" class="btn btn-outline">Get In Touch</a>
@@ -851,38 +871,11 @@
       </div>
     </div>
 
-    <div class="hero-stats">
-      <div class="stat-cell">
-        <div class="stat-num">3</div>
-        <div class="stat-label">Sports</div>
-        <div class="stat-sub">Football · Tennis · Rugby</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-num">1st</div>
-        <div class="stat-label">BSc Honours</div>
-        <div class="stat-sub">Sport & Exercise Science</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-num">MSc</div>
-        <div class="stat-label">Distinction</div>
-        <div class="stat-sub">Applied Sport Performance Analysis</div>
-      </div>
+    <div class="hero-art">
+      <img src="logos/byl-art.png" alt="Illustration of a football pitch and tennis court joined under an analyst's visor, with a stick figure kicking a ball and another playing a forehand">
     </div>
   </div>
 
-  <!-- Pitch SVG background -->
-  <svg class="pitch-bg" viewBox="0 0 500 340" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="10" y="10" width="480" height="320" stroke="white" stroke-width="2"/>
-    <line x1="250" y1="10" x2="250" y2="330" stroke="white" stroke-width="1.5"/>
-    <circle cx="250" cy="170" r="50" stroke="white" stroke-width="1.5"/>
-    <rect x="10" y="100" width="80" height="140" stroke="white" stroke-width="1.5"/>
-    <rect x="410" y="100" width="80" height="140" stroke="white" stroke-width="1.5"/>
-    <rect x="10" y="130" width="40" height="80" stroke="white" stroke-width="1.5"/>
-    <rect x="450" y="130" width="40" height="80" stroke="white" stroke-width="1.5"/>
-    <circle cx="250" cy="170" r="3" fill="white"/>
-    <circle cx="90" cy="170" r="3" fill="white"/>
-    <circle cx="410" cy="170" r="3" fill="white"/>
-  </svg>
 </div>
 
 <!-- LOGO STRIP -->
@@ -914,8 +907,8 @@
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="section-label">01 · About</div>
-  <h2>Analyst. Scientist. Problem solver.</h2>
+  <div class="section-label">About</div>
+  <h2>I make complex data easy to digest.</h2>
   <div class="about-grid">
     <div class="about-text">
       <p>
@@ -949,8 +942,7 @@
 
 <!-- EXPERIENCE -->
 <section id="experience">
-  <div class="section-label">02 · Experience</div>
-  <h2>Where I've worked.</h2>
+  <h2>Experience</h2>
   <div class="exp-list">
 
     <div class="exp-item">
@@ -1012,8 +1004,7 @@
 
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="section-label">03 · Projects</div>
-  <h2>Analysis work.</h2>
+  <h2>Selected work</h2>
 
   <!-- Filter buttons -->
   <div class="filter-bar">
@@ -1043,9 +1034,9 @@
       </div>
     </a>
 
-    <div class="project-card" data-category="data-analytics">
-      <div class="project-thumb project-thumb--placeholder" style="background: linear-gradient(135deg, #0e1620 0%, #141f2e 100%);">
-        <div class="project-thumb-label">WC2022 Set-Piece</div>
+    <a href="wc2022.html" class="project-card" data-category="data-analytics" style="text-decoration: none; color: inherit; display: block;">
+      <div class="project-thumb">
+        <img src="wc2022-cover.jpg" alt="Lionel Messi taking a corner kick at the 2022 FIFA World Cup" loading="lazy" style="object-position: 30% center;">
       </div>
       <div class="project-card-body">
         <div class="project-sport">Football · Thesis</div>
@@ -1058,7 +1049,7 @@
           <span class="project-tag">Random Forest</span>
         </div>
       </div>
-    </div>
+    </a>
 
     <a href="https://byyourlogic.shinyapps.io/i2i-gps-monitor/" target="_blank" rel="noopener noreferrer" class="project-card" data-category="sport-science" style="text-decoration: none; color: inherit; display: block;">
       <div class="project-thumb">
@@ -1196,8 +1187,7 @@
 
 <!-- SKILLS -->
 <section id="skills">
-  <div class="section-label">04 · Skills</div>
-  <h2>Capabilities.</h2>
+  <h2>Tools and methods</h2>
   <div class="skills-grid">
 
     <div class="skill-block">
@@ -1243,12 +1233,11 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-label">05 · Contact</div>
-  <h2>Let's talk.</h2>
+  <h2>Contact</h2>
   <div class="contact-inner">
     <div class="contact-text">
-      <h3>Open to opportunities<br>now.</h3>
-      <p>Based in Leeds. Available for performance analyst and sport science roles - particularly academy and first team environments. Always open to a conversation about data, football and analysis.</p>
+      <h3>Available for academy and<br>first-team analyst roles.</h3>
+      <p>Based in Leeds. Always open to a conversation about data, football and analysis.</p>
     </div>
     <div class="contact-links">
       <a href="mailto:010kannansuresh@gmail.com" class="contact-link">

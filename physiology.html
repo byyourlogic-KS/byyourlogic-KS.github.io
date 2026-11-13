@@ -68,6 +68,9 @@
     text-decoration: none;
   }
 
+  .nav-brand { display: inline-flex; align-items: center; }
+  .nav-brand img { height: 22px; width: auto; display: block; }
+
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
 
   .nav-links a {
@@ -247,7 +250,7 @@
 <body>
 
 <nav>
-  <a href="index.html#" class="nav-brand">byYourLogic</a>
+  <a href="index.html#" class="nav-brand" aria-label="By Your Logic - home"><img src="logos/byl-wordmark-short.png" alt="By Your Logic" height="22"></a>
   <ul class="nav-links">
     <li><a href="index.html#about">About</a></li>
     <li><a href="index.html#experience">Experience</a></li>
