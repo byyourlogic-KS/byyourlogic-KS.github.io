@@ -236,6 +236,10 @@
   .stat-tile .n { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.9rem; line-height: 1.15; letter-spacing: -0.03em; color: var(--text); white-space: nowrap; }
   .stat-tile .n small { font-size: 1rem; color: var(--muted); font-weight: 600; letter-spacing: 0; }
   .stat-tile p { color: var(--muted); font-size: 0.92rem; margin-top: 0.6rem; line-height: 1.6; }
+  .abstract p { color: var(--muted); max-width: 760px; line-height: 1.85; }
+  .abstract p + p { margin-top: 1rem; }
+  .keywords { font-family: 'DM Mono', monospace; font-size: 0.78rem; color: var(--muted); letter-spacing: 0.02em; line-height: 1.8; margin-top: 1.5rem; max-width: 760px; }
+  .keywords strong { color: var(--teal); font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.7rem; margin-right: 0.5rem; }
   .prose { color: var(--muted); max-width: 700px; line-height: 1.85; }
   .prose + .prose { margin-top: 1rem; }
   .prose strong { color: var(--text); font-weight: 500; }
@@ -309,6 +313,13 @@
   <p class="prose"><strong>Corners come down to the first contact.</strong> Winning the first contact was the dominant variable across every model, ranking first in the random forest variable importance and carrying the strongest association with shot creation. Delivery type predicted whether a team kept possession, while target zone independently predicted whether a shot followed.</p>
   <p class="prose"><strong>Zonal marking gave up the most shots but the worst chances.</strong> It conceded the highest share of shots (44.6%) but the lowest xG per attempt (0.09, against 0.19 for hybrid marking). The effect of marking structure was largely overtaken by who won the first contact.</p>
   <p class="prose"><strong>Throw-ins are about direction.</strong> Direction was the dominant predictor of possession retention (w = 0.324). Shot creation from throw-ins in the attacking third could not be predicted from the delivery variables I examined (R&sup2; = 0.010).</p>
+
+  <h2 class="section-title">Abstract</h2>
+  <div class="abstract">
+    <p>Set pieces represent a significant pathway to goal scoring in elite football, yet the tactical mechanisms connecting delivery characteristics, defensive organisation and contact outcomes to possession retention and shot creation remain unclear. The present study examined tactical and structural variables associated with corner kicks (n = 569) and attacking-third throw-ins (n = 972) across all 64 games of the 2022 FIFA World Cup, using StatsBomb open event and 360 freeze-frame data. Binary logistic regression and random forest classification were applied to examine associations between delivery type, target zone, marking structure, player involvement, and first/second contact success with corner kick outcomes, and between throw-in length, direction and first contact success with throw-in outcomes.</p>
+    <p>First-contact success emerged as the dominant variable across all corner kick models, consistently ranking first in the random forest variable importance and having the strongest association in logistic regression. Successful first contact was associated with greater odds of shot creation (OR = 21.06, p &lt; .001), with second contact showing an even stronger association (OR = 29.65, p &lt; .001). Delivery type predicted possession retention, whilst target zone independently predicted shot creation. Marking structure showed a significant but limited association with shots conceded. Throw-in direction was the dominant predictor of possession retention (w = 0.324), whilst shot creation from attacking-third throw-ins was not predictable from the variables examined (R&sup2; = 0.010). Convergent findings across logistic regression and random forest strengthen confidence in the dominance of first-contact success as the key variable in set piece outcomes, with implications for set-piece coaches and analysts on contact conditions, defensive structure, and throw-in strategy at elite level.</p>
+    <p class="keywords"><strong>Keywords</strong>Corner kicks; set piece; throw-ins; random forest; possession retention; FIFA World Cup 2022</p>
+  </div>
 
   <h2 class="section-title">Figures</h2>
   <div class="figs">
