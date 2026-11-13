@@ -789,7 +789,9 @@
   @media (max-width: 520px) { .contact-inner { padding: 1.75rem; gap: 2rem; } }
 
   /* ABOUT: currently card */
-  .currently { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.4rem 1.5rem; margin-bottom: 2rem; }
+  .currently { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.4rem 1.5rem; margin-bottom: 2rem; display: flex; gap: 1.25rem; align-items: flex-start; }
+  .currently-photo { width: 104px; height: 130px; border-radius: 6px; object-fit: cover; flex: none; border: 1px solid var(--border); }
+  .currently-body { min-width: 0; }
   .currently ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
   .currently li { color: var(--muted); font-size: 0.92rem; line-height: 1.55; padding-left: 1rem; position: relative; }
   .currently li::before { content: ''; position: absolute; left: 0; top: 0.62em; width: 5px; height: 5px; border-radius: 50%; background: var(--teal); }
@@ -989,12 +991,16 @@
     </div>
     <div>
       <div class="currently">
-        <div class="section-label" style="margin-bottom: 0.9rem;">Currently</div>
-        <ul>
-          <li><strong>Intern</strong>, Huddersfield Town Academy</li>
-          <li><strong>Lead Analyst</strong>, i2i International Soccer Academy</li>
-          <li>Open to academy and first-team analyst roles</li>
-        </ul>
+        <img class="currently-photo" src="about-photo.jpg" alt="Kannan Suresh smiling and pointing, wearing a blue polo shirt" width="104" height="130" loading="lazy">
+        <div class="currently-body">
+          <div class="section-label" style="margin-bottom: 0.9rem;">Currently</div>
+          <ul>
+            <li><strong>Intern</strong>, Huddersfield Town Academy</li>
+            <li><strong>Lead Analyst</strong>, i2i International Soccer Academy</li>
+            <li><strong>Building</strong>: Formula 1 race and tyre degradation analysis</li>
+            <li>Open to academy and first-team analyst roles</li>
+          </ul>
+        </div>
       </div>
       <div class="section-label" style="margin-bottom: 1rem;">Tools & Technologies</div>
       <div class="tools-grid">
