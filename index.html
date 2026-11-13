@@ -733,6 +733,38 @@
   .hero-art { animation: fadeUp 0.6s 0.35s ease both; }
   .hero-art img { width: 100%; height: auto; display: block; opacity: 0.95; }
 
+  /* PROJECTS GRID: featured + more work */
+  .projects-grid { grid-template-columns: repeat(6, 1fr); }
+  .projects-grid .project-card { grid-column: span 2; }
+  .projects-grid:not(.filtered) .project-card.featured { grid-column: span 3; }
+  .projects-grid:not(.filtered) .project-card.featured .project-thumb { height: 230px; }
+  .projects-grid:not(.filtered) .project-card.featured .project-title { font-size: 1.15rem; }
+  .grid-label {
+    grid-column: 1 / -1;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    padding-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .grid-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .grid-label:not(:first-child) { margin-top: 1.5rem; }
+  .projects-grid.filtered .grid-label { display: none; }
+  @media (max-width: 900px) {
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    .projects-grid .project-card,
+    .projects-grid:not(.filtered) .project-card.featured { grid-column: span 1; }
+  }
+  @media (max-width: 600px) {
+    .projects-grid { grid-template-columns: 1fr; }
+    .projects-grid .project-card,
+    .projects-grid:not(.filtered) .project-card.featured { grid-column: auto; }
+  }
+
   /* LOGO STRIP */
   .trust {
     position: relative;
@@ -1016,25 +1048,8 @@
   </div>
 
   <div class="projects-grid" id="projects-grid">
-
-    <a href="https://byyourlogic-ks-leicester-city-wfc-2023-24.share.connect.posit.cloud/" target="_blank" rel="noopener noreferrer" class="project-card" data-category="team-analysis" style="text-decoration: none; color: inherit; display: block;">
-      <div class="project-thumb">
-        <img src="leicester-dashboard-cover.jpg" alt="Leicester City Women players celebrating a goal" loading="lazy">
-      </div>
-      <div class="project-card-body">
-        <div class="project-sport">Football · Team &amp; Player Analysis</div>
-        <div class="project-title">Leicester City Women 2023/24 Dashboard</div>
-        <div class="project-desc">R/Shiny dashboard built on StatsBomb open data across five women's leagues. Team profile, player profiles, match report, set pieces, player comparison and similar players, with xT, xGOT and a VAEP-style value built from event data. A prototype built for practice.</div>
-        <div class="project-tags">
-          <span class="project-tag">R/Shiny</span>
-          <span class="project-tag">StatsBomb</span>
-          <span class="project-tag">xT</span>
-          <span class="project-tag">VAEP</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="wc2022.html" class="project-card" data-category="data-analytics" style="text-decoration: none; color: inherit; display: block;">
+    <div class="grid-label">Featured</div>
+    <a href="wc2022.html" class="project-card featured" data-category="data-analytics" style="text-decoration: none; color: inherit; display: block;">
       <div class="project-thumb">
         <img src="wc2022-cover.jpg" alt="Lionel Messi taking a corner kick at the 2022 FIFA World Cup" loading="lazy" style="object-position: 30% center;">
       </div>
@@ -1051,7 +1066,7 @@
       </div>
     </a>
 
-    <a href="https://byyourlogic.shinyapps.io/i2i-gps-monitor/" target="_blank" rel="noopener noreferrer" class="project-card" data-category="sport-science" style="text-decoration: none; color: inherit; display: block;">
+    <a href="https://byyourlogic.shinyapps.io/i2i-gps-monitor/" target="_blank" rel="noopener noreferrer" class="project-card featured" data-category="sport-science" style="text-decoration: none; color: inherit; display: block;">
       <div class="project-thumb">
         <img src="i2i-gps-cover.jpg" alt="i2i International Soccer Academy logo" loading="lazy">
       </div>
@@ -1067,6 +1082,41 @@
         </div>
       </div>
     </a>
+
+    <a href="https://byyourlogic-ks-leicester-city-wfc-2023-24.share.connect.posit.cloud/" target="_blank" rel="noopener noreferrer" class="project-card featured" data-category="team-analysis" style="text-decoration: none; color: inherit; display: block;">
+      <div class="project-thumb">
+        <img src="leicester-dashboard-cover.jpg" alt="Leicester City Women players celebrating a goal" loading="lazy">
+      </div>
+      <div class="project-card-body">
+        <div class="project-sport">Football · Team &amp; Player Analysis</div>
+        <div class="project-title">Leicester City Women 2023/24 Dashboard</div>
+        <div class="project-desc">R/Shiny dashboard built on StatsBomb open data across five women's leagues. Team profile, player profiles, match report, set pieces, player comparison and similar players, with xT, xGOT and a VAEP-style value built from event data. A prototype built for practice.</div>
+        <div class="project-tags">
+          <span class="project-tag">R/Shiny</span>
+          <span class="project-tag">StatsBomb</span>
+          <span class="project-tag">xT</span>
+          <span class="project-tag">VAEP</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="framework.html" class="project-card featured" data-category="data-analytics" style="text-decoration: none; color: inherit; display: block;">
+      <div class="project-thumb">
+        <img src="framework-cover-web.jpg" alt="Academy squad in a team huddle before a match" loading="lazy" style="object-position: 25% center;">
+      </div>
+      <div class="project-card-body">
+        <div class="project-sport">Football · Academy Analysis</div>
+        <div class="project-title">Individual Development Plan Framework</div>
+        <div class="project-desc">A proposed individual development plan framework for second-year academy players, built on KPI selection, path diagrams and literature review, and developed from my work as Lead Analyst at i2i International Soccer Academy.</div>
+        <div class="project-tags">
+          <span class="project-tag">KPI Selection</span>
+          <span class="project-tag">Path Diagrams</span>
+          <span class="project-tag">Literature Review</span>
+        </div>
+      </div>
+    </a>
+
+    <div class="grid-label">More work</div>
 
     <a href="physiology.html" class="project-card" data-category="sport-science" style="text-decoration: none; color: inherit; display: block;">
       <div class="project-thumb">
@@ -1098,22 +1148,6 @@
           <span class="project-tag">EWMA</span>
           <span class="project-tag">MLR</span>
           <span class="project-tag">Opta Data</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="framework.html" class="project-card" data-category="data-analytics" style="text-decoration: none; color: inherit; display: block;">
-      <div class="project-thumb">
-        <img src="framework-cover-web.jpg" alt="Academy squad in a team huddle before a match" loading="lazy" style="object-position: 25% center;">
-      </div>
-      <div class="project-card-body">
-        <div class="project-sport">Football · Academy Analysis</div>
-        <div class="project-title">Individual Development Plan Framework</div>
-        <div class="project-desc">A proposed individual development plan framework for second-year academy players, built on KPI selection, path diagrams and literature review, and developed from my work as Lead Analyst at i2i International Soccer Academy.</div>
-        <div class="project-tags">
-          <span class="project-tag">KPI Selection</span>
-          <span class="project-tag">Path Diagrams</span>
-          <span class="project-tag">Literature Review</span>
         </div>
       </div>
     </a>
@@ -1181,7 +1215,6 @@
         </div>
       </div>
     </a>
-
   </div>
 </section>
 
@@ -1268,6 +1301,7 @@
       btn.classList.add('active');
 
       const filter = btn.dataset.filter;
+      document.getElementById('projects-grid').classList.toggle('filtered', filter !== 'all');
 
       projectCards.forEach(card => {
         if (filter === 'all' || card.dataset.category === filter) {
