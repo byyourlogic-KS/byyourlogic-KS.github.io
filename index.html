@@ -765,6 +765,20 @@
     .projects-grid:not(.filtered) .project-card.featured { grid-column: auto; }
   }
 
+  /* EXPERIENCE LOGOS */
+  .exp-item { grid-template-columns: 72px 1fr auto; gap: 1.25rem 1.5rem; align-items: start; }
+  .exp-logo { width: 72px; height: 56px; display: flex; align-items: center; justify-content: center; }
+  .exp-logo img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+  .exp-logo--mono img { filter: brightness(0) invert(1); opacity: 0.85; }
+  .exp-logo--bright img { filter: brightness(1.9) saturate(1.4); }
+  .exp-logo--text { width: 56px; border: 1px solid var(--border); border-radius: 8px; font-family: 'DM Mono', monospace; font-size: 0.8rem; letter-spacing: 0.08em; color: var(--muted); }
+  @media (max-width: 900px) {
+    .exp-item { grid-template-columns: 1fr; }
+    .exp-logo { height: 44px; width: auto; justify-content: flex-start; }
+    .exp-logo img { height: 100%; width: auto; max-width: 120px; }
+    .exp-logo.exp-logo--text { width: 56px; height: 44px; }
+  }
+
   /* LOGO STRIP */
   .trust {
     position: relative;
@@ -976,44 +990,18 @@
 <section id="experience">
   <h2>Experience</h2>
   <div class="exp-list">
-
     <div class="exp-item">
+      <div class="exp-logo"><img src="logos/huddersfield-town.png" alt="Huddersfield Town" loading="lazy"></div>
       <div>
-        <div class="exp-role">Data Collection & Analysis</div>
-        <div class="exp-org">TennisViz · Ellipse Data</div>
-        <div class="exp-desc">Collected and verified live match data across ATP tournaments (250, 500, Masters 1000) using Hawk-Eye and company-specific software. Produced data outputs and visualisations delivered to players, coaches, and ATP platforms including Tennis Insights and broadcast media.</div>
+        <div class="exp-role">Academy Performance Analysis Intern</div>
+        <div class="exp-org">Huddersfield Town · Academy</div>
+        <div class="exp-desc">Internship within the academy performance analysis department.</div>
       </div>
-      <div class="exp-date">2023 – Present</div>
+      <div class="exp-date">2026 – Present</div>
     </div>
 
     <div class="exp-item">
-      <div>
-        <div class="exp-role">Data Analysis Tester & Collector</div>
-        <div class="exp-org">FootballViz · Ellipse Data</div>
-        <div class="exp-desc">Supported development and testing of a new football data collection tool using Premier League, MLS and Ligue 1 footage. Contributed to EURO 2024 RFI, evaluating key performance metrics against FIFA and OPTA standards to enhance competitive insights.</div>
-      </div>
-      <div class="exp-date">2024 – 2025</div>
-    </div>
-
-    <div class="exp-item">
-      <div>
-        <div class="exp-role">Performance Analyst</div>
-        <div class="exp-org">Leeds Beckett Women's Rugby Union</div>
-        <div class="exp-desc">Match filming, coding and performance analysis supporting team and coach decision-making.</div>
-      </div>
-      <div class="exp-date">2025 – Present</div>
-    </div>
-
-    <div class="exp-item">
-      <div>
-        <div class="exp-role">Lead Analyst, 2nd Year Squad</div>
-        <div class="exp-org">i2i International Soccer Academy</div>
-        <div class="exp-desc">Match filming, tagging and performance coding using Veo. Pre- and post-match analysis supporting individual player development for second-year athletes. Developing longitudinal end-of-season reviews, Player Development Plans (PDPs) and GPS performance dashboards. Built a GPS performance dashboard in R/Shiny using PlayerData exports, incorporating ACWR load monitoring, Z-scores and individual player profiles.</div>
-      </div>
-      <div class="exp-date">2025 – Present</div>
-    </div>
-
-    <div class="exp-item">
+      <div class="exp-logo exp-logo--text" aria-hidden="true">LA</div>
       <div>
         <div class="exp-role">Design Partner</div>
         <div class="exp-org">Lince AI</div>
@@ -1023,14 +1011,44 @@
     </div>
 
     <div class="exp-item">
+      <div class="exp-logo"><img src="logos/i2i.png" alt="i2i International Soccer Academy" loading="lazy"></div>
       <div>
-        <div class="exp-role">Academy Performance Analysis Intern</div>
-        <div class="exp-org">Huddersfield Town · Academy</div>
-        <div class="exp-desc">Internship within the academy performance analysis department.</div>
+        <div class="exp-role">Lead Analyst, 2nd Year Squad</div>
+        <div class="exp-org">i2i International Soccer Academy</div>
+        <div class="exp-desc">Match filming, tagging and performance coding using Veo. Pre- and post-match analysis supporting individual player development for second-year athletes. Developing longitudinal end-of-season reviews, Player Development Plans (PDPs) and GPS performance dashboards. Built a GPS performance dashboard in R/Shiny using PlayerData exports, incorporating ACWR load monitoring, Z-scores and individual player profiles.</div>
       </div>
-      <div class="exp-date">2026 – Present</div>
+      <div class="exp-date">2025 – Present</div>
     </div>
 
+    <div class="exp-item">
+      <div class="exp-logo exp-logo--bright"><img src="logos/beckett-wrufc.png" alt="Leeds Beckett Women's Rugby Union" loading="lazy"></div>
+      <div>
+        <div class="exp-role">Performance Analyst</div>
+        <div class="exp-org">Leeds Beckett Women's Rugby Union</div>
+        <div class="exp-desc">Match filming, coding and performance analysis supporting team and coach decision-making.</div>
+      </div>
+      <div class="exp-date">2025 – Present</div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-logo exp-logo--mono"><img src="logos/ellipse-data.png" alt="Ellipse Data" loading="lazy"></div>
+      <div>
+        <div class="exp-role">Data Analysis Tester & Collector</div>
+        <div class="exp-org">FootballViz · Ellipse Data</div>
+        <div class="exp-desc">Supported development and testing of a new football data collection tool using Premier League, MLS and Ligue 1 footage. Contributed to EURO 2024 RFI, evaluating key performance metrics against FIFA and OPTA standards to enhance competitive insights.</div>
+      </div>
+      <div class="exp-date">2024 – 2025</div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-logo exp-logo--mono"><img src="logos/tennisviz.png" alt="TennisViz" loading="lazy"></div>
+      <div>
+        <div class="exp-role">Data Collection & Analysis</div>
+        <div class="exp-org">TennisViz · Ellipse Data</div>
+        <div class="exp-desc">Collected and verified live match data across ATP tournaments (250, 500, Masters 1000) using Hawk-Eye and company-specific software. Produced data outputs and visualisations delivered to players, coaches, and ATP platforms including Tennis Insights and broadcast media.</div>
+      </div>
+      <div class="exp-date">2023 – Present</div>
+    </div>
   </div>
 </section>
 
