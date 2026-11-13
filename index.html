@@ -781,7 +781,7 @@
     .exp-item { grid-template-columns: 1fr; }
     .exp-logo { height: 44px; width: auto; justify-content: flex-start; }
     .exp-logo img { height: 100%; width: auto; max-width: 120px; }
-    .exp-logo.exp-logo--text { width: 56px; height: 44px; }
+    .exp-logo:empty { display: none; }
   }
 
   /* CONTACT CTA */
@@ -1048,7 +1048,7 @@
     </div>
 
     <div class="exp-item">
-      <div class="exp-logo exp-logo--text" aria-hidden="true">LA</div>
+      <div class="exp-logo" aria-hidden="true"></div>
       <div>
         <div class="exp-role">Design Partner</div>
         <div class="exp-org">Lince AI</div>
