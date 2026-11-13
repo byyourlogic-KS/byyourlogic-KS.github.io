@@ -690,6 +690,11 @@
   }
 
   /* ANIMATIONS */
+  /* FOOTER LINKS */
+  .footer-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
+  .footer-links a { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.05em; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--teal); }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
@@ -766,8 +771,8 @@
   }
 
   /* EXPERIENCE LOGOS */
-  .exp-item { grid-template-columns: 72px 1fr auto; gap: 1.25rem 1.5rem; align-items: start; }
-  .exp-logo { width: 72px; height: 56px; display: flex; align-items: center; justify-content: center; }
+  .exp-item { grid-template-columns: 128px 1fr auto; gap: 1.25rem 1.75rem; align-items: start; }
+  .exp-logo { width: 128px; height: 56px; display: flex; align-items: center; justify-content: center; }
   .exp-logo img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
   .exp-logo--mono img { filter: brightness(0) invert(1); opacity: 0.85; }
   .exp-logo--bright img { filter: brightness(1.9) saturate(1.4); }
@@ -928,7 +933,7 @@
       <div class="hero-cta">
         <a href="#projects" class="btn btn-primary">View Projects</a>
         <a href="#contact" class="btn btn-outline">Get In Touch</a>
-        <a href="Msc CV 2026.pdf" class="btn btn-outline" download>Download CV</a>
+        <a href="Kannan-Suresh-CV.pdf" class="btn btn-outline" download>Download CV</a>
       </div>
     </div>
 
@@ -1064,7 +1069,7 @@
     </div>
 
     <div class="exp-item">
-      <div class="exp-logo exp-logo--mono"><img src="logos/tennisviz-ring.png" alt="TennisViz" loading="lazy"></div>
+      <div class="exp-logo exp-logo--mono"><img src="logos/tennisviz.png" alt="TennisViz" loading="lazy"></div>
       <div>
         <div class="exp-role">Data Collection & Analysis</div>
         <div class="exp-org">TennisViz · Ellipse Data</div>
@@ -1313,7 +1318,7 @@
       <p>Based in Leeds. Always open to a conversation about data, football and analysis.</p>
       <div class="contact-cta">
         <a href="mailto:010kannansuresh@gmail.com" class="btn btn-primary">Email me</a>
-        <a href="Msc CV 2026.pdf" class="btn btn-outline" download>Download CV</a>
+        <a href="Kannan-Suresh-CV.pdf" class="btn btn-outline" download>Download CV</a>
       </div>
     </div>
     <div class="contact-links">
@@ -1331,8 +1336,12 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2026 Kannan Suresh · byYourLogic</p>
-  <p>Performance Analyst · Leeds, UK</p>
+  <p>© 2026 Kannan Suresh · By Your Logic · Leeds, UK</p>
+  <div class="footer-links">
+    <a href="#">Back to top &#8593;</a>
+    <a href="https://www.linkedin.com/in/kannansuresh07/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="Kannan-Suresh-CV.pdf" download>CV</a>
+  </div>
 </footer>
 
 <script>

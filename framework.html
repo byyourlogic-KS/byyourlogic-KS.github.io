@@ -227,6 +227,11 @@
     letter-spacing: 0.05em;
   }
 
+  /* FOOTER LINKS */
+  .footer-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
+  .footer-links a { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.05em; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--teal); }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
@@ -283,8 +288,12 @@
 </main>
 
 <footer>
-  <p>© 2026 Kannan Suresh · byYourLogic</p>
-  <p>Performance Analyst · Leeds, UK</p>
+  <p>© 2026 Kannan Suresh · By Your Logic · Leeds, UK</p>
+  <div class="footer-links">
+    <a href="#">Back to top &#8593;</a>
+    <a href="https://www.linkedin.com/in/kannansuresh07/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="Kannan-Suresh-CV.pdf" download>CV</a>
+  </div>
 </footer>
 
 </body>
